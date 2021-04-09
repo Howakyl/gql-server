@@ -4,19 +4,27 @@ import mongoose from 'mongoose';
 import { resolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
 
- 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/gqltest', {useNewUrlParser: true});
 
+const startServer = async () => {
+  
+  const server = new ApolloServer ({
+    typeDefs,
+    resolvers
+  });
+  
+  server.applyMiddleware({ app }); // app is from an existing express app
+  
+  await mongoose.connect('mongodb://localhost:27017/gqltest', 
+    { useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
 
-const server = new ApolloServer ({
-  typeDefs,
-  resolvers
-});
+  app.listen({ port: 4000 }, () => 
+    console.log(`server ready at http://localhost:4000${server.graphqlPath}`)
+  );
+};
 
-server.applyMiddleware({ app }); // app is from an existing express app
-
-app.listen({ port: 4000 }, () => 
-  console.log(`server ready at http://localhost:4000${server.graphqlPath}`)
-)
+startServer();
