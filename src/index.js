@@ -1,20 +1,14 @@
 import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
-// import { typeDefs, resolvers } from './schema';
+import mongoose from 'mongoose';
+import { resolvers } from './resolvers';
+import { typeDefs } from './typeDefs';
 
+ 
 const app = express();
 
-const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-`;
+mongoose.connect('mongodb://localhost:27017/gqltest', {useNewUrlParser: true});
 
-const resolvers = {
-  Query: {
-    hello: () => "YO"
-  }
-}
 
 const server = new ApolloServer ({
   typeDefs,
