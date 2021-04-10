@@ -1,17 +1,25 @@
 import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import { resolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
 
 const startServer = async () => {
   
   const server = new ApolloServer ({
     typeDefs,
-    resolvers
+    resolvers,
   });
   
   server.applyMiddleware({ app }); // app is from an existing express app
