@@ -13,5 +13,7 @@ export const typeDefs = gql`
 
   type Mutation {
     createCat (name: String!): Cat!
+    deleteCat (id: ID): Boolean
   }
+
 `;

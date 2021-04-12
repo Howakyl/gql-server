@@ -10,6 +10,10 @@ export const resolvers = {
       const kitty = new Cat({ name });
       await kitty.save();
       return kitty;
+    },
+    deleteCat: async (_, {id}) => {
+      await Cat.findByIdAndDelete(id);
+      return true;
     }
   }
 }
