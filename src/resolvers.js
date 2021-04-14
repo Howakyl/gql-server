@@ -3,11 +3,12 @@ import { Cat } from './models/Cat';
 export const resolvers = {
   Query: {
     hello: () => "YO",
-    cats: () => Cat.find()
+    cats: () => Cat.find(),
+    cat: (_, {id}) => Cat.findById(id)
   },
   Mutation: {
-    createCat: async (_, {name}) => {
-      const kitty = new Cat({ name });
+    createCat: async (_, {name, age}) => {
+      const kitty = new Cat({ name, age });
       await kitty.save();
       return kitty;
     },
@@ -16,15 +17,15 @@ export const resolvers = {
       return true;
     },
     updateCat: async (_, {id, input}) => {
-      const yee = await Cat.findById(id);
+      const foundCat = await Cat.findById(id);
 
-      if(!yee) console.log('no cat with this id!');
-
+      if(!foundCat) console.log('no cat with this id!');
+      
       Object.keys(input).forEach(value => {
-        yee[value] = input[value];
+        foundCat[value] = input[value];
       });
 
-      const updatedCat = await yee.save();
+      const updatedCat = await foundCat.save();
 
       return updatedCat;
     }
