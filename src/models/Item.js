@@ -1,5 +1,11 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-export const Item = mongoose.model('Item', {
-  name: String
-});
+const ItemSchema = new Schema ({
+  item: String
+})
+
+ const Item = mongoose.model('Item', ItemSchema);
+
+module.exports = Item;

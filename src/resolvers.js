@@ -7,15 +7,18 @@ export const resolvers = {
     cat: (_, {id}) => Cat.findById(id)
   },
   Mutation: {
+
     createCat: async (_, {name, age}) => {
       const kitty = new Cat({ name, age });
       await kitty.save();
       return kitty;
     },
+
     deleteCat: async (_, {id}) => {
       await Cat.findByIdAndDelete(id);
       return true;
     },
+
     updateCat: async (_, {id, input}) => {
       const foundCat = await Cat.findById(id);
 
@@ -29,6 +32,9 @@ export const resolvers = {
 
       return updatedCat;
     }
+
+    // ITEMS //
+    
   }
 }
 
