@@ -10,7 +10,7 @@ export const typeDefs = gql`
   type Cat {
     id: ID!
     name: String!
-    age: Int
+    age: Int!
   }
 
   input updateCatInput {
@@ -21,6 +21,6 @@ export const typeDefs = gql`
   type Mutation {
     createCat (name: String!, age: Int!): Cat!
     deleteCat (id: ID): Boolean
-    updateCat (id: ID!, input: updateCatInput): Cat!
+    updateCat (id: ID!, input: updateCatInput!): Cat!
   }
 `;
