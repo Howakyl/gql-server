@@ -119,26 +119,33 @@ const data = [
     name: "aaaa"
   }
 
-  function  makeItem  () {
-    const newItem = new Item(objItem);
+  
+  function  makeItem(item) {
+    const newItem = new Item(item);
     newItem.save((error, result) => {
       if (error) console.log(error)
-      console.log(result)
     })
     console.log(newItem)
-    process.exit()
-    // return newItem;
   }
-  makeItem()
-// }
 
-// const thing = new db.Item(objItem);
-// thing.save();
-// return thing;
+  function exit() {
+    mongoose.disconnect();
+  }
 
-// createCat: async (_, {name, age}) => {
-//   const kitty = new Cat({ name, age });
-//   await kitty.save();
-//   return kitty;
+  function seedDb () {
+    let done = 0;
 
-
+    Item.deleteMany({}, (err, result) => {
+      if (err) console.log(err)
+    })
+      // if (err) console.log(err)
+      for (let i = 0; i <data.length; i++) {
+        const itemObj = {name: data[i]}
+        makeItem(itemObj)
+        done++;
+      };
+      if (done === data.length) {
+        exit();
+      }
+  }
+seedDb()
