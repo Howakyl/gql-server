@@ -1,9 +1,8 @@
 // const data = require('./items.json');
 // import * as data from './items.json';
-// import {Item} from './models/Item.js';
+
 import { Item } from './models/Item';
-import mongoose, { disconnect } from 'mongoose';
-// const db = require('./models');
+import mongoose from 'mongoose';
 
 mongoose.connect('mongodb://localhost:27017/gqltest', 
     { useNewUrlParser: true,
@@ -102,24 +101,6 @@ const data = [
   "macadamia nuts",
   "butter"
   ]
-
-
-// function makeObj() {
-
-  // let arr = [];
-  // for (let i = 0; i < data.length; i++) {
-  //   const item = {name: data[i]}
-    
-  //   arr.push(item)
-  // }
-  // console.log(arr)
-
-  
-  let objItem = {
-    name: "aaaa"
-  }
-
-  
   function  makeItem(item) {
     const newItem = new Item(item);
     newItem.save((error, result) => {
@@ -138,7 +119,6 @@ const data = [
     Item.deleteMany({}, (err, result) => {
       if (err) console.log(err)
     })
-      // if (err) console.log(err)
       for (let i = 0; i <data.length; i++) {
         const itemObj = {name: data[i]}
         makeItem(itemObj)
