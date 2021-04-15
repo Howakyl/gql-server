@@ -1,11 +1,5 @@
-// import mongoose from 'mongoose';
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const ItemSchema = new Schema ({
-  item: String
-})
-
- const Item = mongoose.model('Item', ItemSchema);
-
-module.exports = Item;
+export const Item = mongoose.model('Item',{
+  name: String
+});

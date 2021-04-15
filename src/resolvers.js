@@ -1,4 +1,5 @@
 import { Cat } from './models/Cat';
+import { Item } from './models/Item';
 
 export const resolvers = {
   Query: {
@@ -31,10 +32,14 @@ export const resolvers = {
       const updatedCat = await foundCat.save();
 
       return updatedCat;
-    }
+    },
 
     // ITEMS //
-    
+    createItem: async (_,{name}) => {
+      const newItem = new Item({name});
+      await newItem.save();
+      return newItem;
+    }
   }
 }
 

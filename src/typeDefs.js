@@ -13,6 +13,11 @@ export const typeDefs = gql`
     age: Int!
   }
 
+  type Item {
+    id: ID!
+    name: String!
+  }
+
   input updateCatInput {
     name: String
     age: Int
@@ -22,5 +27,7 @@ export const typeDefs = gql`
     createCat (name: String!, age: Int!): Cat!
     deleteCat (id: ID): Boolean
     updateCat (id: ID!, input: updateCatInput!): Cat!
+
+    createItem (name: String): Item!
   }
 `;

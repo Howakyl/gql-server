@@ -26,7 +26,10 @@ const startServer = async () => {
   
   await mongoose.connect('mongodb://localhost:27017/gqltest', 
     { useNewUrlParser: true,
+      useCreateIndex: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
+
     }
   );
 
