@@ -123,9 +123,9 @@ const data = [
         const itemObj = {name: data[i]}
         makeItem(itemObj)
         done++;
+        if (done === data.length) {
+          exit();
+        }
       };
-      if (done === data.length) {
-        exit();
-      }
   }
 seedDb()
