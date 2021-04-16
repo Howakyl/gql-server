@@ -5,6 +5,8 @@ export const typeDefs = gql`
     hello: String!
     cats: [Cat!]!
     cat (id: ID!): Cat!
+
+    items: [Item!]!
   }
 
   type Cat {

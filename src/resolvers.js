@@ -5,7 +5,8 @@ export const resolvers = {
   Query: {
     hello: () => "YO",
     cats: () => Cat.find(),
-    cat: (_, {id}) => Cat.findById(id)
+    cat: (_, {id}) => Cat.findById(id),
+    items: () => Item.find()
   },
   Mutation: {
 
